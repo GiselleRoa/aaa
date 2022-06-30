@@ -264,7 +264,9 @@ INSERT INTO tipo_parentesco VALUES (066, 'HIJO')
 
 INSERT INTO futuro_afiliado VALUES (055, 'JUANITO', ' ', '')
 
+INSERT INTO estadado_postulacion VALUES (555, '05/12/2020', 055)
 INSERT INTO solicitud_ingreso VALUES (1,'03/04/2021');
+
 
 INSERT INTO region VALUES (1, 'METROPOLITANA DE SANTIAGO');
 
@@ -273,9 +275,13 @@ INSERT INTO provincia VALUES (1, 'MAGALLANES')
 INSERT INTO comuna VALUES (1, 'LA FLORIDA');
 
 INSERT INTO nacionalidad VALUES (1,'CHILENA/O', ' ');
+
 INSERT INTO tipo_transporte VALUES (5, 'TRANSPORTE TERRESTRE')
+
 INSERT INTO descuento VALUES (05, 'TERRESTRE', '30%', 5)
+
 INSERT INTO aseguradora VALUES (07, 'ASEGURADORA1', 'JORQ #0001', )
+
 INSERT INTO vehiculo VALUES (1,'CHEVROLET', 'CAMARO', '1234','AZUL', 'AUTO', '1111','11111'. 07, 05, 01);
 
 
@@ -293,5 +299,7 @@ INSERT INTO forma_pago VALUES (1, 'PAGO INICIAL')
 INSERT INTO forma_pago VALUES (2, 'PAGO MENSUAL')
 
 INSERT INTO pagos VALUES (001, '07/04/2021', 'SALDADO', ' ', 1 , 2, 1, 01);
+
+INSERT INTO tipo_discapacidad VALUES (99, TEA)
 
 INSERT INTO afiliados VALUES (01, '0000', 'Alan', ' ', 'Brito', ' ', '07/04/1990', '$2000', 'calle siempre viva #1234', 'M', ' ', 'alan@b.cl', 'curriculum here', '0909', 1, 1, ' ', 1, 1)
