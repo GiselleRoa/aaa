@@ -262,7 +262,7 @@ INSERT INTO estado_civil VALUES (3,'soltero')
 
 INSERT INTO tipo_parentesco VALUES (066, 'HIJO')
 
-INSERT INTO futuro_afiliado VALUES (055, 'JUANITO', ' ', '')
+INSERT INTO futuro_afiliado VALUES (055, 'JUANITO', ' ', 'WEI', 'JUA', '02/05/1998', 'HIJO', 066, 3)
 
 INSERT INTO estadado_postulacion VALUES (555, '05/12/2020', 055)
 INSERT INTO solicitud_ingreso VALUES (1,'03/04/2021');
@@ -285,7 +285,7 @@ INSERT INTO aseguradora VALUES (07, 'ASEGURADORA1', 'JORQ #0001', )
 INSERT INTO vehiculo VALUES (1,'CHEVROLET', 'CAMARO', '1234','AZUL', 'AUTO', '1111','11111'. 07, 05, 01);
 
 
-INSERT INTO banco VALUES (1, 'BANCO ESTADO', '');
+INSERT INTO banco VALUES (1, 'BANCO ESTADO', ' CALLE PEDRO SOL #98');
 
 INSERT INTO cheque VALUES (88, 0006, 'BANCO WEW')
 
