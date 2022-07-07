@@ -38,7 +38,8 @@ CREATE TABLE telefono_cliente(
 CREATE TABLE telefono(
     id_telefono                 NUMBER NOT NULL,
     numero_telefono             VARCHAR(250) NOT NULL,
-    tipo_telefono_id_numero     NUMBER NOT NULL
+    tipo_telefono_id_numero     NUMBER NOT NULL,
+    afiliados_id_afiliado       NUMBER NOT NULL
 );
 
 CREATE TABLE tipo_telefono(
@@ -79,14 +80,11 @@ CREATE TABLE forma_pago(
     nombre              VARCHAR2(250) NOT NULL
 );
 
---efectivo tipo?
 CREATE TABLE tipo_pago(
     id_pago         NUMBER NOT NULL,
     nombre          VARCHAR2(250) NOT NULL                        
 );
 
-
--- id cheque o numero de serie?
 CREATE TABLE cheque(
     id_cheque       NUMBER NOT NULL,
     numero_cheque   NUMBER NOT NULL,
@@ -115,14 +113,33 @@ CREATE TABLE empresa(
 CREATE TABLE solicitud_ingreso(
     id_solicitud                        NUMBER NOT NULL,
     fecha_creacion                      DATE NOT NULL,
-    estado_postulacion_id_postulacion   NUMBER NOT NULL,
+    estado_postulacion                  CHAR NOT NULL,
     futuro_afiliado_id_futuro_afiliado  NUMBER NOT NULL
 );
 
-CREATE TABLE estado_postulacion(
-    id_postulacion      NUMBER NOT NULL,
-    fecha_postulacion   DATE NOT NULL,
-    rut_postulante      VARCHAR2(250) NOT NULL
+CREATE TABLE marca(
+    id_marca        NUMBER NOT NULL,
+    nombre          VARCHAR2(250) NOT NULL
+    
+);
+
+CREATE TABLE modelo(
+    id_modelo       NUMBER NOT NULL,
+    nombre          VARCHAR2(250) NOT NULL,
+    marca_id_marca  NUMBER NOT NULL
+    
+);
+
+
+CREATE TABLE color(
+    id_color       NUMBER NOT NULL,
+    nombre          VARCHAR2(250) NOT NULL
+    
+);
+
+CREATE TABLE tipo(
+    id_tipo_vehiculo     NUMBER NOT NULL,
+    nombre          VARCHAR2(250) NOT NULL
     
 );
 
@@ -161,11 +178,7 @@ CREATE TABLE aseguradora_empresa(
 
 CREATE TABLE vehiculo(
     id_vehiculo                             NUMBER NOT NULL,
-    marca                                   VARCHAR2(250) NOT NULL,
-    modelo                                  VARCHAR2(250) NOT NULL,
     patente                                 VARCHAR2(250) NOT NULL,
-    color                                   VARCHAR2(250) NOT NULL,
-    tipo                                    VARCHAR2(250) NOT NULL,
     numero_chasis                           VARCHAR2(250) NOT NULL,
     numero_motor                            VARCHAR2(250) NOT NULL,
     aseguradora_id_aseguradora              NUMBER NOT NULL,
@@ -181,6 +194,7 @@ CREATE TABLE tipo_transporte(
 CREATE TABLE beneficio(
     id_beneficio                            NUMBER NOT NULL,
     nombre                                  VARCHAR2(250) NOT NULL,
+    fecha                                   DATE NOT NULL,
     descuento_id_descuentos                 NUMBER NOT NULL,
     tipo_beneficio_id_tipo_beneficio        NUMBER NOT NULL,
     afiliados_id_afiliado                   NUMBER NOT NULL
@@ -197,6 +211,9 @@ CREATE TABLE descuento(
     porcentaje                          VARCHAR2(250) NOT NULL,
     tipo_transporte_id_tipo_transporte  NUMBER NOT NULL
 );
+
+-- PRIMARY KEY
+
 ALTER TABLE afiliados ADD CONSTRAINT afiliados_PK PRIMARY KEY (id_afiliado);
 ALTER TABLE pagos ADD CONSTRAINT pagos_PK PRIMARY KEY (id_pagos);
 ALTER TABLE tipo_pago ADD CONSTRAINT tipo_pago_PK PRIMARY KEY (id_pago);
@@ -221,40 +238,67 @@ ALTER TABLE comuna ADD CONSTRAINT comuna_PK PRIMARY KEY (id_comuna);
 ALTER TABLE provincia ADD CONSTRAINT provincia_PK PRIMARY KEY (id_provincia);
 ALTER TABLE region ADD CONSTRAINT region_PK PRIMARY KEY (id_region);
 ALTER TABLE solicitud_ingreso ADD CONSTRAINT solicitud_ingreso_PK PRIMARY KEY (id_solicitud);
-ALTER TABLE estado_postulacion ADD CONSTRAINT estado_postulacion_PK PRIMARY KEY (id_postulacion);
 ALTER TABLE futuro_afiliado ADD CONSTRAINT futuro_afiliado_PK PRIMARY KEY (id_futuro_afiliado);
 ALTER TABLE tipo_parentesco ADD CONSTRAINT tipo_parentesco_PK PRIMARY KEY (id_tipo_parentesco);
 ALTER TABLE estado_civil ADD CONSTRAINT estado_civil_PK PRIMARY KEY (id_estado_civil);
+ALTER TABLE marca ADD CONSTRAINT marca_PK PRIMARY KEY (id_marca);
+ALTER TABLE modelo ADD CONSTRAINT modelo_PK PRIMARY KEY (id_modelo);
+ALTER TABLE color ADD CONSTRAINT color_PK PRIMARY KEY (id_color);
+ALTER TABLE tipo ADD CONSTRAINT tipo_PK PRIMARY KEY (id_tipo_vehiculo);
+
+--FOREIGN KEY 
 
 ALTER TABLE afiliados ADD CONSTRAINT afiliados_comuna_id_FK FOREIGN KEY (comuna_id_comuna) REFERENCES comuna (id_comuna);
 ALTER TABLE afiliados ADD CONSTRAINT afiliados_nacionalidad_id_FK FOREIGN KEY (nacionalidad_id_nacionalidad) REFERENCES nacionalidad (id_nacionalidad);
 ALTER TABLE afiliados ADD CONSTRAINT afiliados_tipo_discapacidad_id_FK FOREIGN KEY (tipo_discapacidad_id_tipo_discapacidad) REFERENCES tipo_discapacidad (id_tipo_de_discapacidad);
 ALTER TABLE afiliados ADD CONSTRAINT afiliados_solicitud_ingreso_id_FK FOREIGN KEY (solicitud_ingreso_id_solicitud) REFERENCES solicitud_ingreso (id_solicitud);
+
 ALTER TABLE telefono_cliente ADD CONSTRAINT telefono_cliente_telefono_id_FK FOREIGN key (telefono_id_telefono) REFERENCES telefono (id_telefono);
 ALTER TABLE telefono_cliente ADD CONSTRAINT telefono_cliente_afiliado_id_FK FOREIGN KEY (afiliados_id_afiliado) REFERENCES afiliados (id_afiliado);
+
 ALTER TABLE telefono ADD CONSTRAINT telefono_tipo_telefono_id_FK FOREIGN KEY (tipo_telefono_id_numero) REFERENCES tipo_telefono (id_numero);
+ALTER TABLE telefono ADD CONSTRAINT telefono_afiliados_id_FK FOREIGN KEY (afiliados_id_afiliado) REFERENCES telefono (id_telefono);
+
 ALTER TABLE pagos ADD CONSTRAINT pagos_cheque_id_FK FOREIGN KEY (cheque_id_cheque) REFERENCES cheque (id_cheque);
 ALTER TABLE pagos ADD CONSTRAINT pagos_banco_id_FK FOREIGN KEY (banco_id_banco) REFERENCES banco (id_banco);
 ALTER TABLE pagos ADD CONSTRAINT pagos_tipo_pago_id_FK FOREIGN KEY (tipo_pago_id_pago) REFERENCES tipo_pago (id_pago);
 ALTER TABLE pagos ADD CONSTRAINT pagos_forma_pago_id_FK FOREIGN KEY (forma_pago_id_forma_pago) REFERENCES forma_pago (id_forma_pago);
 ALTER TABLE pagos ADD CONSTRAINT pagos_afiliados_id_FK FOREIGN KEY (afiliados_id_afiliado) REFERENCES afiliados (id_afiliado);
+
 ALTER TABLE beneficio ADD CONSTRAINT beneficio_descuento_id_FK FOREIGN KEY (descuento_id_descuentos) REFERENCES descuento (id_descuentos);
 ALTER TABLE beneficio ADD CONSTRAINT beneficio_tipo_beneficio_id_FK FOREIGN KEY (tipo_beneficio_id_tipo_beneficio) REFERENCES tipo_beneficio (id_tipo_beneficio);
 ALTER TABLE beneficio ADD CONSTRAINT beneficio_afiliados_id_FK FOREIGN KEY (afiliados_id_afiliado) REFERENCES afiliados (id_afiliado);
+
 ALTER TABLE descuento ADD CONSTRAINT descuento_tipo_transporte_id_FK FOREIGN KEY (tipo_transporte_id_tipo_transporte) REFERENCES tipo_transporte (id_tipo_transporte);
+
+ALTER TABLE modelo ADD CONSTRAINT modelo_marca_id_FK FOREIGN KEY (marca_id_marca) REFERENCES marca (id_marca);
+
 ALTER TABLE vehiculo ADD CONSTRAINT vehiculo_afiliados_id_FK FOREIGN KEY (afiliados_id_afiliado) REFERENCES afiliados (id_afiliado);
 ALTER TABLE vehiculo ADD CONSTRAINT vehiculo_aseguradora_id_FK FOREIGN KEY (aseguradora_id_aseguradora) REFERENCES aseguradora (id_aseguradora);
 ALTER TABLE vehiculo ADD CONSTRAINT vehiculo_descuento_id_FK FOREIGN KEY (descuento_id_descuentos) REFERENCES descuento (id_descuentos);
+ALTER TABLE vehiculo ADD CONSTRAINT vehiculo_modelo_id_FK FOREIGN KEY (modelo_id_modelo) REFERENCES modelo (id_modelo);
+ALTER TABLE vehiculo ADD CONSTRAINT vehiculo_color_id_FK FOREIGN KEY (color_id_color) REFERENCES color (id_color);
+ALTER TABLE vehiculo ADD CONSTRAINT vehiculo_tipo_id_FK FOREIGN KEY (tipo_id_tipo_vehiculo) REFERENCES tipo (id_tipo_vehiculo);
+
 ALTER TABLE provincia ADD CONSTRAINT provincia_region_id_FK FOREIGN KEY (region_id_region) REFERENCES region (id_region);
+
 ALTER TABLE comuna ADD CONSTRAINT comuna_provincia_id_FK FOREIGN KEY (provincia_id_provincia) REFERENCES provincia (id_provincia);
+
 ALTER TABLE solicitud_ingreso ADD CONSTRAINT solicitud_ingreso_futuro_afiliado_id_FK FOREIGN KEY (futuro_afiliado_id_futuro_afiliado) REFERENCES futuro_afiliado (id_futuro_afiliado);
-ALTER TABLE solicitud_ingreso ADD CONSTRAINT solicitud_ingreso_estado_postulacion_id_FK FOREIGN KEY (estado_postulacion_id_postulacion) REFERENCES estado_postulacion (id_postulacion);
+
 ALTER TABLE sindicato ADD CONSTRAINT sindicato_empresa_id_FK FOREIGN KEY (empresa_id_empresa) REFERENCES empresa (id_empresa);
+
 ALTER TABLE empresa ADD CONSTRAINT empresa_comuna_id_FK FOREIGN KEY (comuna_id_comuna) REFERENCES comuna (id_comuna);
+
 ALTER TABLE futuro_afiliado ADD CONSTRAINT futuro_afiliado_tipo_parentesco_id_FK FOREIGN KEY (tipo_patentesco_id_tipo_parentesco) REFERENCES tipo_parentesco (id_tipo_parentesco);
 ALTER TABLE futuro_afiliado ADD CONSTRAINT futuro_afiliado_estado_civil_id_FK FOREIGN KEY (estado_civil_id_estado_civil) REFERENCES estado_civil (id_estado_civil);
+
 ALTER TABLE aseguradora_empresa ADD CONSTRAINT aseguradora_empresa_empresa_id_FK FOREIGN KEY (empresa_id_empresa) REFERENCES empresa (id_empresa);
 ALTER TABLE aseguradora_empresa ADD CONSTRAINT aseguradora_empresa_aseguradora_id_FK FOREIGN KEY (aseguradora_id_aseguradora) REFERENCES aseguradora (id_aseguradora);
+
+
+
+
 
 ALTER SESSION SET NLS_DATE_FORMAT= 'DD/MM/YYYY'
 
@@ -281,7 +325,8 @@ INSERT INTO tipo_transporte VALUES (5, 'TRANSPORTE TERRESTRE')
 INSERT INTO descuento VALUES (05, 'TERRESTRE', '30%', 5)
 
 INSERT INTO aseguradora VALUES (07, 'ASEGURADORA1', 'JORQ #0001', )
-
+INSERT INTO empresa VALUES (0976, 'SINTACT', 'CALLE 2432', 1)
+INSERT INTO aseguradora_empresa VALUES (54, 'SINTAC2', 0976, 07)
 INSERT INTO vehiculo VALUES (1,'CHEVROLET', 'CAMARO', '1234','AZUL', 'AUTO', '1111','11111'. 07, 05, 01);
 
 
@@ -298,8 +343,8 @@ INSERT INTO tipo_pago VALUES (4, 'TRANSFERENCIA');
 INSERT INTO forma_pago VALUES (1, 'PAGO INICIAL')
 INSERT INTO forma_pago VALUES (2, 'PAGO MENSUAL')
 
-INSERT INTO pagos VALUES (001, '07/04/2021', 'SALDADO', ' ', 1 , 2, 1, 01);
+INSERT INTO pagos VALUES (001, '07/04/2021', 'SALDADO', 0, 1 , 2, 1, 01);
 
 INSERT INTO tipo_discapacidad VALUES (99, TEA)
 
-INSERT INTO afiliados VALUES (01, '0000', 'Alan', ' ', 'Brito', ' ', '07/04/1990', '$2000', 'calle siempre viva #1234', 'M', ' ', 'alan@b.cl', 'curriculum here', '0909', 1, 1, ' ', 1, 1)
+INSERT INTO afiliados VALUES (01, '0000', 'Alan', ' juanit ', 'Brito', ' perez', '07/04/1990', '$2000', 'calle siempre viva #1234', 'M', 99, 'alan@b.cl', 'curriculum here', '0909', 1, 1, 'TEA', 1, 1)
