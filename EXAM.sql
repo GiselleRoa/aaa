@@ -120,27 +120,23 @@ CREATE TABLE solicitud_ingreso(
 CREATE TABLE marca(
     id_marca        NUMBER NOT NULL,
     nombre          VARCHAR2(250) NOT NULL
-    
 );
 
 CREATE TABLE modelo(
     id_modelo       NUMBER NOT NULL,
     nombre          VARCHAR2(250) NOT NULL,
-    marca_id_marca  NUMBER NOT NULL
-    
+    marca_id_marca  NUMBER NOT NULL   
 );
 
 
 CREATE TABLE color(
     id_color       NUMBER NOT NULL,
     nombre          VARCHAR2(250) NOT NULL
-    
 );
 
 CREATE TABLE tipo(
     id_tipo_vehiculo     NUMBER NOT NULL,
     nombre          VARCHAR2(250) NOT NULL
-    
 );
 
 CREATE TABLE futuro_afiliado(
