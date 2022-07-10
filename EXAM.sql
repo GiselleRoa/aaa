@@ -179,7 +179,10 @@ CREATE TABLE vehiculo(
     numero_motor                            VARCHAR2(250) NOT NULL,
     aseguradora_id_aseguradora              NUMBER NOT NULL,
     descuento_id_descuentos                 NUMBER NOT NULL,
-    afiliados_id_afiliado                   NUMBER NOT NULL
+    afiliados_id_afiliado                   NUMBER NOT NULL,
+    modelo_id_modelo                        NUMBER NOT NULL,
+    color_id_color                          NUMBER NOT NULL,
+    tipo_id_tipo_vehiculo                   NUMBER NOT NULL
 );
 
 CREATE TABLE tipo_transporte(
@@ -295,52 +298,44 @@ ALTER TABLE aseguradora_empresa ADD CONSTRAINT aseguradora_empresa_aseguradora_i
 
 
 
-
 ALTER SESSION SET NLS_DATE_FORMAT= 'DD/MM/YYYY'
 
-INSERT INTO estado_civil VALUES (3,'soltero')
+INSERT INTO tipo_discapacidad VALUES (1, 'TEA');
+INSERT INTO nacionalidad VALUES (2, 'CHILENO/A', '');
 
-INSERT INTO tipo_parentesco VALUES (066, 'HIJO')
+INSERT INTO region VALUES (7, 'REGION METROPOLITANA');
+INSERT INTO provincia VALUES (8, 'SANTIAGO', 7);
+INSERT INTO comuna VALUES (9, 'SAN JOAQUIN', 8);
 
-INSERT INTO futuro_afiliado VALUES (055, 'JUANITO', ' ', 'WEI', 'JUA', '02/05/1998', 'HIJO', 066, 3)
-
-INSERT INTO estadado_postulacion VALUES (555, '05/12/2020', 055)
-INSERT INTO solicitud_ingreso VALUES (1,'03/04/2021');
-
-
-INSERT INTO region VALUES (1, 'METROPOLITANA DE SANTIAGO');
-
-INSERT INTO provincia VALUES (1, 'MAGALLANES')
-
-INSERT INTO comuna VALUES (1, 'LA FLORIDA');
-
-INSERT INTO nacionalidad VALUES (1,'CHILENA/O', ' ');
-
-INSERT INTO tipo_transporte VALUES (5, 'TRANSPORTE TERRESTRE')
-
-INSERT INTO descuento VALUES (05, 'TERRESTRE', '30%', 5)
-
-INSERT INTO aseguradora VALUES (07, 'ASEGURADORA1', 'JORQ #0001', )
-INSERT INTO empresa VALUES (0976, 'SINTACT', 'CALLE 2432', 1)
-INSERT INTO aseguradora_empresa VALUES (54, 'SINTAC2', 0976, 07)
-INSERT INTO vehiculo VALUES (1,'CHEVROLET', 'CAMARO', '1234','AZUL', 'AUTO', '1111','11111'. 07, 05, 01);
+INSERT INTO aseguradora VALUES (10, 'FYER', 'calle alamos 0000', 0101);
+INSERT INTO empresa VALUES (11, 'SINTAC', 'calle perez 0001', 9);
+INSERT INTO aseguradora_empresa VALUES (12, 'FORD', 11, 10);
+INSERT INTO sindicato VALUES (13, 'SINTAC2', 'calle valen 0002', 11);
 
 
-INSERT INTO banco VALUES (1, 'BANCO ESTADO', ' CALLE PEDRO SOL #98');
+INSERT INTO tipo_parentesco VALUES (14, 'HIJO');
+INSERT INTO estado_civil VALUES (15, 'soltero');
+INSERT INTO futuro_afiliado VALUES (16, 'EDDIE', '', 'MUNSON', '', '05/06/1990', 'HIJO', 14, 15);
+INSERT INTO solicitud_ingreso VALUES (17, '09/03/2020', 16)
+INSERT INTO afiliados VALUES (18, 12654234-1, 'STEVE', '', 'STEVE', '', '02/12/1975', '$600.000', 'calle hawkins 999', 'MASCULINO', '', 'steve@gmail.com', 'curriculum', 7777, 9, 2, , 17);
 
-INSERT INTO cheque VALUES (88, 0006, 'BANCO WEW')
+INSERT INTO tipo_beneficio VALUES (3, 'DESCUENTO POR TRANSPORTE');
+INSERT INTO tipo_transporte VALUES (4, 'VEHICULO');
+INSERT INTO descuento VALUES (5, 'DESCUENTO POR TRANSPORTE TERRESTRE', '30%', 4);
+INSERT INTO beneficio VALUES (6, 'DESCUENTO TRANSPORTE.', 5, 3, 18);
 
-INSERT INTO tipo_pago VALUES (1,'EFECTIVO');
-INSERT INTO tipo_pago VALUES (2,'TARJETA');
-INSERT INTO tipo_pago VALUES (3,'CHEQUE');
-INSERT INTO tipo_pago VALUES (4, 'TRANSFERENCIA');
+INSERT INTO tipo VALUES (19, 'AUTOMOVIL');
+INSERT INTO color VALUES (20, 'AZUL');
+INSERT INTO marca VALUES (21, 'CHEVROLET');
+INSERT INTO modelo VALUES (22, 'CAMARO');
+INSERT INTO vehiculo VALUES (23, 'JKJK80', );
 
+INSERT INTO cheque VALUES (24);
+INSERT INTO banco VALUES (25);
+INSERT INTO forma_pago VALUES (26);
+INSERT INTO tipo_pago VALUES (27);
+INSERT INTO pagos VALUES (28);
 
-INSERT INTO forma_pago VALUES (1, 'PAGO INICIAL')
-INSERT INTO forma_pago VALUES (2, 'PAGO MENSUAL')
-
-INSERT INTO pagos VALUES (001, '07/04/2021', 'SALDADO', 0, 1 , 2, 1, 01);
-
-INSERT INTO tipo_discapacidad VALUES (99, TEA)
-
-INSERT INTO afiliados VALUES (01, '0000', 'Alan', ' juanit ', 'Brito', ' perez', '07/04/1990', '$2000', 'calle siempre viva #1234', 'M', 99, 'alan@b.cl', 'curriculum here', '0909', 1, 1, 'TEA', 1, 1)
+INSERT INTO tipo_telefono VALUES (29)
+INSERT INTO telefono VALUES (30);
+INSERT INTO telefono_cliente VALUES (31);
