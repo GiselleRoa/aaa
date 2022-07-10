@@ -144,7 +144,7 @@ CREATE TABLE futuro_afiliado(
     primer_nombre                       VARCHAR2(250) NOT NULL,
     segundo_nombre                      VARCHAR2(250),
     apellido_paterno                    VARCHAR2(250) NOT NULL,
-    apellido_materno                    VARCHAR2(250) NOT NULL,
+    apellido_materno                    VARCHAR2(250),
     fecha_nacimiento                    DATE NOT NULL,
     tipo_parentesco                     VARCHAR2(250) NOT NULL,
     tipo_patentesco_id_tipo_parentesco  NUMBER,
