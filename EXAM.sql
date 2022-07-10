@@ -317,7 +317,7 @@ INSERT INTO tipo_parentesco VALUES (14, 'HIJO');
 INSERT INTO estado_civil VALUES (15, 'soltero');
 INSERT INTO futuro_afiliado VALUES (16, 'EDDIE', '', 'MUNSON', '', '05/06/1990', 'HIJO', 14, 15);
 INSERT INTO solicitud_ingreso VALUES (17, '09/03/2020','en espera', 16);
-INSERT INTO afiliados VALUES (18, 12654234-1, 'STEVE', '', 'HARRINGTON', '', '02/12/1975', '$600.000', 'calle hawkins 999', 'MASCULINO', '', 'steve@gmail.com', 'curriculum', 7777,9,2,0,17);
+INSERT INTO afiliados VALUES (18, 12654234-1, 'STEVE', '', 'HARRINGTON', '', '02/12/1975', 600.000, 'calle hawkins 999', 'MASCULINO', 'SI', 'steve@gmail.com', 'curriculum',9,17,2,1);
 
 INSERT INTO tipo_beneficio VALUES (3, 'DESCUENTO POR TRANSPORTE');
 INSERT INTO tipo_transporte VALUES (4, 'VEHICULO');
