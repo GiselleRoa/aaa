@@ -317,7 +317,7 @@ INSERT INTO tipo_parentesco VALUES (14, 'HIJO');
 INSERT INTO estado_civil VALUES (15, 'soltero');
 INSERT INTO futuro_afiliado VALUES (16, 'EDDIE', '', 'MUNSON', '', '05/06/1990', 'HIJO', 14, 15);
 INSERT INTO solicitud_ingreso VALUES (17, '09/03/2020', 16)
-INSERT INTO afiliados VALUES (18, 12654234-1, 'STEVE', '', 'STEVE', '', '02/12/1975', '$600.000', 'calle hawkins 999', 'MASCULINO', '', 'steve@gmail.com', 'curriculum', 7777, 9, 2, , 17);
+INSERT INTO afiliados VALUES (18, 12654234-1, 'STEVE', '', 'HARRINGTON', '', '02/12/1975', '$600.000', 'calle hawkins 999', 'MASCULINO', '', 'steve@gmail.com', 'curriculum', 7777,9,2,0,17);
 
 INSERT INTO tipo_beneficio VALUES (3, 'DESCUENTO POR TRANSPORTE');
 INSERT INTO tipo_transporte VALUES (4, 'VEHICULO');
@@ -339,3 +339,33 @@ INSERT INTO pagos VALUES (28, '10/03/2020', 'PAGADO', '', 25,27,26,18);
 INSERT INTO tipo_telefono VALUES (29,'PERSONAL')
 INSERT INTO telefono VALUES (30,909876543,29,18);
 INSERT INTO telefono_cliente VALUES (31,30,18);
+
+
+SELECT * FROM tipo_discapacidad;
+SELECT * FROM nacionalidad;
+SELECT * FROM region;
+SELECT * FROM provincia;
+SELECT * FROM comuna;
+SELECT * FROM aseguradora;
+SELECT * FROM empresa;
+SELECT * FROM aseguradora_empresa;
+SELECT * FROM sindicato;
+SELECT * FROM tipo_parentesco;
+SELECT * FROM estado_civil;
+SELECT * FROM futuro_afiliado;
+SELECT * FROM solicitud_ingreso;
+SELECT * FROM afiliados;
+SELECT * FROM tipo_beneficio;
+SELECT * FROM tipo_transporte;
+SELECT * FROM descuento;
+SELECT * FROM beneficio;
+SELECT * FROM tipo;
+SELECT * FROM color;
+SELECT * FROM marca;
+SELECT * FROM modelo;
+SELECT * FROM vehiculo;
+SELECT * FROM cheque;
+SELECT * FROM banco;
+SELECT * FROM forma_pago;
+SELECT * FROM tipo_pago;
+SELECT * FROM pagos;
