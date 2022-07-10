@@ -116,7 +116,7 @@ CREATE TABLE empresa(
 CREATE TABLE solicitud_ingreso(
     id_solicitud                        NUMBER NOT NULL,
     fecha_creacion                      DATE NOT NULL,
-    estado_postulacion                  CHAR NOT NULL,
+    estado_postulacion                  VARCHAR2(250) NOT NULL,
     futuro_afiliado_id_futuro_afiliado  NUMBER NOT NULL
 );
 
@@ -316,13 +316,13 @@ INSERT INTO sindicato VALUES (13, 'SINTAC2', 'calle valen 0002', 11);
 INSERT INTO tipo_parentesco VALUES (14, 'HIJO');
 INSERT INTO estado_civil VALUES (15, 'soltero');
 INSERT INTO futuro_afiliado VALUES (16, 'EDDIE', '', 'MUNSON', '', '05/06/1990', 'HIJO', 14, 15);
-INSERT INTO solicitud_ingreso VALUES (17, '09/03/2020', 16)
+INSERT INTO solicitud_ingreso VALUES (17, '09/03/2020','en espera', 16);
 INSERT INTO afiliados VALUES (18, 12654234-1, 'STEVE', '', 'HARRINGTON', '', '02/12/1975', '$600.000', 'calle hawkins 999', 'MASCULINO', '', 'steve@gmail.com', 'curriculum', 7777,9,2,0,17);
 
 INSERT INTO tipo_beneficio VALUES (3, 'DESCUENTO POR TRANSPORTE');
 INSERT INTO tipo_transporte VALUES (4, 'VEHICULO');
 INSERT INTO descuento VALUES (5, 'DESCUENTO POR TRANSPORTE TERRESTRE', '30%', 4);
-INSERT INTO beneficio VALUES (6, 'DESCUENTO TRANSPORTE.',5,3,18);
+INSERT INTO beneficio VALUES (6, 'DESCUENTO TRANSPORTE.','06/05/2020',5,3,18);
 
 INSERT INTO tipo VALUES (19, 'AUTOMOVIL');
 INSERT INTO color VALUES (20, 'AZUL');
@@ -336,12 +336,12 @@ INSERT INTO forma_pago VALUES (26, 'PAGO INICIAL');
 INSERT INTO tipo_pago VALUES (27, 'EFECTIVO');
 INSERT INTO pagos VALUES (28, '10/03/2020', 'PAGADO', '', 25,27,26,18);
 
-INSERT INTO tipo_telefono VALUES (29,'PERSONAL')
+INSERT INTO tipo_telefono VALUES (29,'PERSONAL');
 INSERT INTO telefono VALUES (30,909876543,29,18);
 INSERT INTO telefono_cliente VALUES (31,30,18);
 
 
-SELECT * FROM tipo_discapacidad;
+
 SELECT * FROM nacionalidad;
 SELECT * FROM region;
 SELECT * FROM provincia;
